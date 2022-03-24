@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Master</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="style/style.css">
+
+</head>
+
+<body>
+    <canvas id="stars" class="stars"></canvas>
+    <main>
+
+        <!-- SPLASH SCREEN -->
+        <div id="splash-container" class="screen">
+            <section id="splash-screen">
+                <div class="game-settings-control">
+                    <!-- PLAYER NAME INPUT -->
+                    <div id="player-setup">
+                        <input class="player-name-input" placeholder="Enter Name" />
+                    </div>
+
+                    <!-- DIFFICULTY LEVEL -->
+                    <div id="game-mode">
+                        <img id="easy-btn" alt="" src="./images/easy.svg">
+                        <img id="medium-btn" alt="" src="./images/medium.svg">
+                        <img id="hard-btn" alt="" src="./images/hard.svg">
+                    </div>
+
+                    <!-- START BUTTON AND HELP BUTTON -->
+
+                    <img id="start-game" alt="" src="./images/startbtn.svg">
+                </div>
+
+
+                <img id="help-btn" alt="Help" src="./images/rulesbtn.svg" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+
+                <!-- MODAL -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Game Instruction</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>1. Start game by flipping a card and find another card that has the same image as
+                                    the
+                                    first. If player can't find a pair, the cards will flipped back with face down.</p>
+                                <p>2. When player find a pair they remain flipped from the board.</p>
+                                <p>3. Player wins if they flipped all the cards within the given amount of time.</p>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="background-image">
+                    <img src="images/flash-screen-bg.png" alt="">
+                </div>
+            </section>
+        </div>
+        <!-- END OF SPLASH SCREEN -->
+
+        <!-- EASY MODE GAME SCREEN -->
+        <div id="easy-mode-container" class='screen'>
+            <section id='game-screen'>
+                <div id="scoreboard" class="scoreboard">
+                    <div class="player-name">Player 1</div>
+                    <div class="flip-score">0</div>
+                    <div><span class="time">--:--</span></div>
+                </div>
+
+                <div id="easy-mode-gameboard">
+
+                    <div class="card" data-name="1">
+                        <img class="front" src="./images/1.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="1">
+                        <img class="front" src="./images/1.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="2">
+                        <img class="front" src="./images/2.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="2">
+                        <img class="front" src="./images/2.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="3">
+                        <img class="front" src="./images/3.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="3">
+                        <img class="front" src="./images/3.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="4">
+                        <img class="front" src="./images/4.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="4">
+                        <img class="front" src="./images/4.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="5">
+                        <img class="front" src="./images/5.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="5">
+                        <img class="front" src="./images/5.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="6">
+                        <img class="front" src="./images/6.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="6">
+                        <img class="front" src="./images/6.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+                </div>
+
+                <section class="game-options">
+                    <img class="play-again-btn" id="easy-quit-game" alt="Quit Game" src="./images/quit-btn.svg">
+                    <img class="restart-game" id="restart-easy" alt="Restart Game" src="images/restart.svg">
+                </section>
+                <div class="background-image">
+                    <img src="./images/mountain-bg.png" alt="">
+                </div>
+            </section>
+        </div>
+
+        <!-- MEDIUM MODE GAME SCREEN -->
+        <div id="medium-mode-container" class='screen'>
+            <section id='game-screen'>
+                <div id="scoreboard" class="scoreboard">
+                    <div class="player-name">Player 1</div>
+                    <div class="flip-score">0</div>
+                    <div><span class="time">--:--</span></div>
+                </div>
+
+                <div id="medium-mode-gameboard">
+
+                    <div class="card" data-name="1">
+                        <img class="front" src="./images/1.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="1">
+                        <img class="front" src="./images/1.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="2">
+                        <img class="front" src="./images/2.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="2">
+                        <img class="front" src="./images/2.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="3">
+                        <img class="front" src="./images/3.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="3">
+                        <img class="front" src="./images/3.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="4">
+                        <img class="front" src="./images/4.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="4">
+                        <img class="front" src="./images/4.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="5">
+                        <img class="front" src="./images/5.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="5">
+                        <img class="front" src="./images/5.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="6">
+                        <img class="front" src="./images/6.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="6">
+                        <img class="front" src="./images/6.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="7">
+                        <img class="front" src="./images/7.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="7">
+                        <img class="front" src="./images/7.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="8">
+                        <img class="front" src="./images/8.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="8">
+                        <img class="front" src="./images/8.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+                </div>
+
+                <section class="game-options">
+                    <img class="play-again-btn" id="medium-quit-game" alt="Quit Game" src="./images/quit-btn.svg">
+                    <img class="restart-game" id="restart-medium" alt="Restart Game" src="images/restart.svg">
+                </section>
+                <div class="background-image">
+                    <img src="./images/mountain-bg.png" alt="">
+                </div>
+            </section>
+        </div>
+
+        <!-- HARD MODE GAME SCREEN -->
+        <div id="hard-mode-container" class='screen'>
+            <section id='game-screen'>
+                <div id="scoreboard" class="scoreboard">
+                    <div class="player-name">Player 1</div>
+                    <div class="flip-score">0</div>
+                    <div><span class="time">--:--</span></div>
+                </div>
+
+                <div id="hard-mode-gameboard">
+
+                    <div class="card" data-name="1">
+                        <img class="front" src="./images/1.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="1">
+                        <img class="front" src="./images/1.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="2">
+                        <img class="front" src="./images/2.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="2">
+                        <img class="front" src="./images/2.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="3">
+                        <img class="front" src="./images/3.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="3">
+                        <img class="front" src="./images/3.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="4">
+                        <img class="front" src="./images/4.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="4">
+                        <img class="front" src="./images/4.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="5">
+                        <img class="front" src="./images/5.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="5">
+                        <img class="front" src="./images/5.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="6">
+                        <img class="front" src="./images/6.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="6">
+                        <img class="front" src="./images/6.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="7">
+                        <img class="front" src="./images/7.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="7">
+                        <img class="front" src="./images/7.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="8">
+                        <img class="front" src="./images/8.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="8">
+                        <img class="front" src="./images/8.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="9">
+                        <img class="front" src="./images/9.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="">
+                        <img class="front" src="./images/9.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="10">
+                        <img class="front" src="./images/10.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+
+                    <div class="card" data-name="10">
+                        <img class="front" src="./images/10.png" alt="">
+                        <img class="back" src="./images/card-down-blue.png" alt="">
+                    </div>
+                </div>
+
+                <section class="game-options">
+                    <img class="play-again-btn" id="medium-quit-game" alt="Quit Game" src="./images/quit-btn.svg">
+                    <img class="restart-game" id="restart-hard" alt="Restart Game" src="images/restart.svg">
+                </section>
+                <div class="background-image">
+                    <img src="./images/mountain-bg.png" alt="">
+                </div>
+            </section>
+        </div>
+
+        <!-- GAME OVER SCREEN -->
+
+        <div id='game-over-container' class='screen'>
+            <scetion id="game-over">
+                <div id="game-over-options">
+                    <img id="play-again-gameover" class="play-again-btn" alt="Play Again" src="./images/playagain.svg">
+                </div>
+                <div class="background-image">
+                    <img src="./images/game-over-bg.png" alt="">
+                </div>
+            </scetion>
+        </div>
+
+        <!-- YOU WIN SCREEN -->
+        <div id='victory-container' class='screen'>
+            <section id="victory">
+                <div id="victory-options">
+                    <img id="play-again-victory" class="play-again-btn" alt="Play Again" src="./images/playagain.svg">
+                </div>
+                <div class="background-image">
+                    <img src="./images/you-win-bg.png" alt="">
+                </div>
+            </section>
+        </div>
+
+
+
+
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="./scripts/script.js"></script>
+
+</body>
+
+</html>
